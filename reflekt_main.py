@@ -16,7 +16,14 @@ import sys
 from reflekt_emotion_live import AsyncReflektEmotionEngine
 from reflekt_voice_vosk import ReflektVoiceVOSK
 from bridge_server import start_bridge
+import signal
 
+def signal_handler(sig, frame):
+    print("\nShutting down Reflekt safely...")
+    # You would call your engine's shutdown here
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
 # ------------------------------------------------------------
 # Camera Feeder (The Eyes)
 # ------------------------------------------------------------

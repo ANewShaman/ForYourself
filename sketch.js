@@ -92,7 +92,13 @@ function startEndSession() {
   if (!endingSession) {
     endingSession = true;
     endStartTime = millis();
-    console.log("Ending session... The soul fades away.");
+    
+    // CAPTURE FINAL IMPRINT
+    // This saves the current state of the visual organism as a .png
+    let timestamp = year() + "" + month() + "" + day() + "_" + hour() + minute();
+    save("reflekt_residue_" + timestamp + ".png");
+    
+    console.log("Session complete. Residue imprint downloaded.");
   }
 }
 
