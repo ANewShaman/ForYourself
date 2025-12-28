@@ -2,7 +2,7 @@
 
 Reflekt is a real-time hybrid intelligence system that transforms live biometric signals—facial expression and voice—into a continuously evolving visual organism.
 
-The system does not attempt to classify or diagnose emotion. Instead, it fuses multiple weak signals into a transient emotional state that drives generative visuals and produces session-level visual residue.
+The system does **not** attempt to classify or diagnose emotion. Instead, it fuses multiple weak signals into a transient emotional state that drives generative visuals and produces session-level visual residue.
 
 This repository contains the full end-to-end pipeline: sensing, interpretation, fusion, streaming, rendering, and archival.
 
@@ -12,9 +12,9 @@ This repository contains the full end-to-end pipeline: sensing, interpretation, 
 
 Reflekt is composed of three loosely coupled layers:
 
-1. Sensing & Interpretation (Python)
-2. Real-time Bridge (WebSocket)
-3. Visual Organism & Archive (Browser)
+1. **Sensing & Interpretation** (Python)
+2. **Real-time Bridge** (WebSocket)
+3. **Visual Organism & Archive** (Browser)
 
 Human input remains ephemeral. Only derived emotional state is streamed to the visual layer.
 
@@ -24,36 +24,36 @@ Human input remains ephemeral. Only derived emotional state is streamed to the v
 
 ### Runtime Intelligence (Python)
 
-- `reflekt_main.py`  
+- **reflekt_main.py**  
   Entry point. Launches the camera feeder, emotion engine, voice engine, and WebSocket bridge.
 
-- `reflekt_emotion_live.py`  
+- **reflekt_emotion_live.py**  
   Asynchronous facial emotion analysis using FER with temporal smoothing, confidence grading, and fallback logic.
 
-- `reflekt_voice_vosk.py`  
+- **reflekt_voice_vosk.py**  
   Voice recognition using VOSK with sentiment analysis via VADER.  
-  Includes semantic overrides (e.g., “tired” → sad) and dynamic valence/arousal estimation.
+  Includes semantic overrides (e.g., `"tired" → sad`) and dynamic valence/arousal estimation.
 
-- `bridge_server.py`  
-  Lightweight WebSocket server that streams only derived emotional state.  
+- **bridge_server.py**  
+  Lightweight WebSocket server that streams **only** derived emotional state.  
   Raw audio, video frames, and transcripts are never transmitted.
 
 ---
 
 ### Visual Layer (Browser)
 
-- `index.html`  
+- **index.html**  
   Main interactive interface for the Reflekt organism.
 
-- `sketch.js`  
+- **sketch.js**  
   Emotion-responsive particle system (“The Liquid Soul”).  
   Visual behavior is driven by dominant emotion, valence, arousal, and voice intensity.  
   Supports memory snapshots and end-of-session residue export.
 
-- `bridge.js`  
+- **bridge.js**  
   Receives live emotional state from the Python backend via WebSocket.
 
-- `gallery.html`  
+- **gallery.html**  
   Immersive Three.js gallery that displays saved session residue images as a navigable archive.
 
 ---
@@ -62,7 +62,7 @@ Human input remains ephemeral. Only derived emotional state is streamed to the v
 
 - Facial input provides a continuous ambient signal.
 - Voice input has priority and temporarily overrides facial inference.
-- Emotional state is streamed in real time and not stored.
+- Emotional state is streamed in real time and is not stored.
 - Persistence occurs only through:
   - Visual memory snapshots during the session
   - A final session residue image saved on termination
@@ -71,38 +71,18 @@ Human input remains ephemeral. Only derived emotional state is streamed to the v
 
 ## Running Locally
 
-### 1. Install dependencies
+### Prerequisites
+
+- Python 3.9+
+- Webcam and microphone
+- A VOSK English model present in the project directory
+
+---
+
+### Install Dependencies
 
 ```bash
 pip install fer vosk vaderSentiment sounddevice opencv-python websockets
-
-## Running Locally
-
-### 1. Prerequisites
-
-Ensure a VOSK English model is present in the project directory.
-
----
-
-### 2. Start the backend
-
-```bash
-python reflekt_main.py
-
-### 3. Launch the frontend
-
-Open `index.html` in a modern browser (Chrome recommended).
-
-To view the archive space, open `gallery.html`.
-
----
-
-## Design Principles
-
-- No single biometric signal is trusted in isolation.
-- Emotion is treated as a transient state, not a ground truth.
-- The system produces experiential output, not analytic judgments.
-- What persists is residue, not raw biometric data.
 
 ---
 
