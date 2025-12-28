@@ -16,7 +16,7 @@ import queue
 import threading
 from pathlib import Path
 from datetime import datetime
-from typing import Dict, Optional, List, Tuple
+from typing import Dict, Optional, List, Tuple, Any
 from dataclasses import dataclass, asdict
 from collections import deque
 
@@ -162,7 +162,7 @@ class AsyncReflektEmotionEngine:
         self.result_queue: queue.Queue = queue.Queue(maxsize=5)
         
         # Initialize FER detector
-        self.detector: Optional[FER_CLASS] = None
+        self.detector: Optional[Any] = None
         self._init_detector()
         
         # Worker thread
