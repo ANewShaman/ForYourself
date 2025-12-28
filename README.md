@@ -57,7 +57,15 @@ Human input remains ephemeral. Only derived emotional state is streamed to the v
   Immersive Three.js gallery that displays saved session residue images as a navigable archive.
 
 ---
+## System Architecture
+<p align="center">
+  <a href="reflekt_diagram.png">
+    <img src="reflekt_diagram.png" alt="Reflekt system architecture" width="500">
+  </a>
+</p>
 
+
+---
 ## Interaction Model
 
 - Facial input provides a continuous ambient signal.
@@ -84,6 +92,14 @@ Human input remains ephemeral. Only derived emotional state is streamed to the v
 ```bash
 pip install fer vosk vaderSentiment sounddevice opencv-python websockets
 ```
+### Start the backend
+```bash
+python reflekt_main.py 
+```
+--- 
+### Launch the frontend 
+Open index.html in a modern browser (Chrome recommended). 
+To view the archive space, open gallery.html. 
 ---
 
 ## Status
