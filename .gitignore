@@ -1,0 +1,11 @@
+# Python environment and cache
+__pycache__/
+venv/
+*.py[cod]
+
+# Project specific data
+reflekt_sessions/
+
+# Models (if they are huge, definitely ignore them)
+models/
+pretrained_models/
